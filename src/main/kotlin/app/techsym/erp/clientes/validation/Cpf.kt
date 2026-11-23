@@ -1,12 +1,10 @@
 package app.techsym.erp.clientes.validation
 fun isCpf(document: String): Boolean {
-    if (document.isEmpty()) return false
-
     val formato = Regex("""[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}|[0-9]{3}[0-9]{3}[0-9]{3}[0-9]{2}""")
     if (!formato.matches(document)) return false
 
     val numbers = document.filter { it.isDigit() }.map {
-        it.toString().toInt()
+        it.digitToInt()
     }
 
     if (numbers.size != 11) return false
